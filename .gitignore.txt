@@ -1,0 +1,5 @@
+./happy.spec
+./dist
+./build
+./__pycache__
+./.vscode
