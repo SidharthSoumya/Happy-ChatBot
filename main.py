@@ -15,13 +15,14 @@ import windowsOperations.camera as cm
 import windowsOperations.screenOperaion as so
 
 if __name__ == '__main__':
-    # gr.greet()
+    gr.greet()
     cTime=datetime.datetime.now().minute
     while 1:
         query = rs.takeCommand().lower()
         print(datetime.datetime.now().minute)
 
-        if datetime.datetime.now().minute < cTime+1 or ('happy' in query):
+        # if datetime.datetime.now().minute < cTime+1 or ('hey' in query):
+        if True:
             cTime = datetime.datetime.now().minute
             if 'wikipedia' in query:
                 spk.speak('Searching Wikipedia...')
@@ -36,7 +37,7 @@ if __name__ == '__main__':
                 query = query.replace('happy', '')
                 query = query.replace('for', '')
                 browser.searchString(query)
-            elif 'play music' in query:
+            elif 'play music' in query or 'change music' in query:
                 player.playMusic()
 
             elif 'time' in query:
@@ -46,8 +47,8 @@ if __name__ == '__main__':
                 print(strtime)
 
             elif 'code' in query:
-                code_path = "C:\\Program Files\\Microsoft VS Code\\Code.exe"
-                # code_path = "C:\\Users\\Soumya\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+                # code_path = "C:\\Program Files\\Microsoft VS Code\\Code.exe"
+                code_path = "C:\\Users\\haPPy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
                 os.startfile(code_path)
             elif 'change wallpaper' in query:
                 cw.change()
