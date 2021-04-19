@@ -8,8 +8,9 @@ def takePhoto():
     s, img = cam.read()
     if s:
         cv2.destroyWindow("cam-test")
-        cv2.imwrite("C:\\Users\\haPPy\\OneDrive\\Pictures\\Camera Roll\\IMG"+strt+'.jpg',img)
+        cv2.imwrite("C:\\Users\\haPPy\\Pictures\\Camera Roll\\IMG"+strt+'.jpg',img)
+        return
 def takeScreenshot():
     strt = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
     scr = pyautogui.screenshot()
-    scr.save(r'C:\\Users\\haPPy\\OneDrive\\Pictures\\Screenshots\\IMG'+strt+'.png')
+    scr.save(r'C:\\Users\\haPPy\\Pictures\\Screenshots\\IMG'+strt+'.png')

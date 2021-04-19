@@ -7,7 +7,8 @@ if __name__ == '__main__':
     gr.greet()
     cTime=datetime.datetime.now().minute
     while 1:
-        query = rs.takeCommand().lower()
+        # query = rs.takeCommand().lower()
+        query = str(input('Command : ')).lower()
         print(datetime.datetime.now().minute)
 
         # if datetime.datetime.now().minute < cTime+1 or ('hey' in query):

@@ -10,68 +10,65 @@ import windowsOperations.screenOperaion as so
 import shutil
 import datetime
 
+query_g = ''
 def time():
     strtime = datetime.datetime.now().strftime("%H:%M:%S")
     spk.speak("It is")
     spk.speak(strtime)
     print(strtime)
+
 def play():
     player.playMusic()
 
+def search_wiki():
+    global query_g
+    spk.speak('Searching Wikipedia...')
+    query_g = query_g.replace("wikipedia", "")
+    res = ''
+    res = wikipedia.summary(query_g, sentences=2)
+    spk.speak("According to wikipedia")
+    spk.speak(res)
+
+def search_browser():
+    query = query_g.replace('search', '')
+    # query = query.replace('happy', '')
+    query = query.replace('for', '')
+    browser.searchString(query)
+
+def vs_code():
+    code_path = "C:\\Users\\haPPy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
+    # code_path = "C:\Users\haPPy\AppData\Local\Programs\Microsoft VS Code\Code.exe"
+    os.startfile(code_path)
+
+def screen_brightness():
+    so.adjustBrightness(query_g)
+
+def photo_capture():
+    cm.takePhoto()
+
+def screenshot_capture():
+    cm.takeScreenshot()
+
 def default():
-    print("Thank You")
+    pass
 
 def handle_event(query):
+    global query_g
+    query_g = query
     switcher = {
-        'time': 'time',
-        'play': 'play'
+        'time': time,
+        'play music': play,
+        'change music': play,
+        'wikipedia': search_wiki,
+        'search': search_browser,
+        'code': vs_code,
+        'brightness': screen_brightness,
+        'take photo': photo_capture,
+        'take screenshot': screenshot_capture,
     }
-    switcher.get(query, default)()
-    # if 'wikipedia' in query:
-    #     spk.speak('Searching Wikipedia...')
-    #     query = query.replace("wikipedia", "")
-    #     results = wikipedia.summary(query, sentences=2)
-    #     spk.speak("According to wikipedia")
-    #     spk.speak(results)
-    # elif 'search' in query:
-    #     query = query.replace('search', '')
-    #     query = query.replace('happy', '')
-    #     query = query.replace('for', '')
-    #     browser.searchString(query)
-    # elif 'play music' in query or 'change music' in query:
-    #     player.playMusic()
-    #
-    # elif 'time' in query:
-    #     strtime = datetime.datetime.now().strftime("%H:%M:%S")
-    #     spk.speak("It is")
-    #     spk.speak(strtime)
-    #     print(strtime)
-    #
-    # elif 'code' in query:
-    #     # code_path = "C:\\Program Files\\Microsoft VS Code\\Code.exe"
-    #     code_path = "C:\\Users\\haPPy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
-    #     # code_path = "C:\Users\haPPy\AppData\Local\Programs\Microsoft VS Code\Code.exe"
-    #     os.startfile(code_path)
-    # elif 'change wallpaper' in query:
-    #     cw.change()
-    # elif 'run frcs' in query:
-    #     ng.openBuild(query)
-    # elif 'brightness' in query:
-    #     so.adjustBrightness(query)
-    # elif 'build frcs' in query:
-    #     ng.makeBuild(query)
-    # elif 'quit' in query:
-    #     spk.speak("thank you")
-    # elif 'clear screen' in query:
-    #     os.system("cls")
-    #     spk.speak("The screen is cleared")
-    # elif 'copy file' in query:
-    #     shutil.copytree(r'F:\\python\\Programs\\Voice Assistant\\happy.py', r'\\192.168.0.1\\MyShare\\Sidharth')
-    # elif ('take' and 'photo') in query:
-    #     cm.takePhoto()
-    # elif ('take' and 'screenshot') in query:
-    #     cm.takeScreenshot()
-    # elif 'thank you' in query:
-    #     spk.speak('You are welcome Sir !')
-    # else:
-    #     print("Thank You")
+    for key in switcher.keys():
+        if query.find(key) == -1:
+            default()
+        else:
+            switcher[key]()
+            break
