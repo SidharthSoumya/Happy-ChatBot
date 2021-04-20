@@ -40,6 +40,10 @@ def vs_code():
     # code_path = "C:\Users\haPPy\AppData\Local\Programs\Microsoft VS Code\Code.exe"
     os.startfile(code_path)
 
+def py_charm():
+    code_path = "C:\\Program Files\\JetBrains\\PyCharm Community Edition 2020.3.5\\bin\\pycharm64.exe"
+    os.startfile(code_path)
+
 def screen_brightness():
     so.adjustBrightness(query_g)
 
@@ -48,6 +52,9 @@ def photo_capture():
 
 def screenshot_capture():
     cm.takeScreenshot()
+
+def quit():
+    exit()
 
 def default():
     pass
@@ -65,6 +72,8 @@ def handle_event(query):
         'brightness': screen_brightness,
         'take photo': photo_capture,
         'take screenshot': screenshot_capture,
+        'py charm': py_charm,
+        'exit': quit
     }
     for key in switcher.keys():
         if query.find(key) == -1:
