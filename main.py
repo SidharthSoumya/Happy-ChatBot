@@ -1,6 +1,6 @@
 import datetime
 import greetings as gr
-import recogniseSpeech as rs
+# import recogniseSpeech as rs
 import event_handler as event
 
 if __name__ == '__main__':

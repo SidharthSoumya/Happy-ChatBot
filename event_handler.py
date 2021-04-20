@@ -2,12 +2,12 @@ import wikipedia
 import os
 import speak as spk
 import windowsOperations.openInChrome as browser
-import windowsOperations.changeWallpaper as cw
+# import windowsOperations.changeWallpaper as cw
 import windowsOperations.musicPlayer as player
-import windowsOperations.angular as ng
+# import windowsOperations.angular as ng
 import windowsOperations.camera as cm
 import windowsOperations.screenOperaion as so
-import shutil
+# import shutil
 import datetime
 
 query_g = ''
@@ -33,7 +33,11 @@ def search_browser():
     query = query_g.replace('search', '')
     # query = query.replace('happy', '')
     query = query.replace('for', '')
-    browser.searchString(query)
+    browser.search(query)
+
+def open_url():
+    query = query_g.replace('open', '')
+    browser.open_url(query)
 
 def vs_code():
     code_path = "C:\\Users\\haPPy\\AppData\\Local\\Programs\\Microsoft VS Code\\Code.exe"
@@ -68,6 +72,7 @@ def handle_event(query):
         'change music': play,
         'wikipedia': search_wiki,
         'search': search_browser,
+        'open': open_url,
         'code': vs_code,
         'brightness': screen_brightness,
         'take photo': photo_capture,
